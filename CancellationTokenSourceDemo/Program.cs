@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace ConsoleApp5
+namespace CancellationTokenSourceDemo
 {
     internal class Program
     {
