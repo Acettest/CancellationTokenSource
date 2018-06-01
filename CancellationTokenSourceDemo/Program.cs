@@ -17,7 +17,11 @@ namespace CancellationTokenSourceDemo
             //注册执行的顺序与注册的顺序相反，这是为什么呢？
             cts.Token.Register(() => { Console.WriteLine("取消完成！"); });
             cts.Token.Register(() => { Console.WriteLine("开始取消！"); });
-            cts.Token.Register(() => { Console.WriteLine("取消操作3！"); });
+            var ctr = cts.Token.Register(() => { Console.WriteLine("取消操作3！"); });
+
+            //登记回调删除，这样当调用cts.Cancel()时便不会发生调用该回调
+            ctr.Dispose();
+
             while (true)
             {
                 Console.WriteLine("输入Enter取消");
