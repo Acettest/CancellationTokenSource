@@ -10,6 +10,7 @@ namespace CancellationTokenSourceDemo
         {
             CancellationTokenSource cts = new CancellationTokenSource();
             //技巧：匿名方法的使用，使用线程池传入不符合委托形式的函数，第二个参数可以传入一个强类型的参数
+            //lambda闭包--cts的捕捉
             ThreadPool.QueueUserWorkItem(o => WriteOperationOne(cts.Token, null));//支持取消
             //ThreadPool.QueueUserWorkItem(o => WriteOperationTwo(CancellationToken.None, null));//不支持取消
             ThreadPool.QueueUserWorkItem(o => WriteOperationThree(cts.Token, 1000));//不支持取消
